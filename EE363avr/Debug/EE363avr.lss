@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Fri Aug 20 12:11:00 2021
+AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Fri Aug 20 12:31:25 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
                                  
-                                 ;
+                                 ; Data Transfer
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
                                  ;*************************************************************************
@@ -985,16 +985,16 @@ AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atme
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; LabA_00_Demonstration
+                                 ; instruction ldi, movw, mov
                                  ;
                                  
                                  	.org 0x000
 000000 0000                      	nop
-000001 e102                      	ldi r16, 0x12
+000001 e102                      	ldi r16, 0x12		; Operand: Rd, Rr Operation: Rd <- Rr
 000002 e01c                      	ldi r17, 12
 000003 e02c                      	ldi r18, 0x0C
-000004 0108                      	movw r1:r0, r17:r16
-000005 2e22                      	mov r2, r18
+000004 0108                      	movw r1:r0, r17:r16 ; Operand: Rd, Rr Operation: Rd+1:Rd <- Rr+1:Rr
+000005 2e22                      	mov r2, r18			; Operand: Rd, K Operation: Rd <- K
 000006 940c 0006                 END: jmp END
 
 
