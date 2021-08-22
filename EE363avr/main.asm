@@ -2,7 +2,7 @@
 ; instruction ld, ldd, st, std
 ; topic 70, 71, 72, 118, 119, 120
 	.org 0x000			; ORG means origin ORG is used for specific addressing in microprocessor and microcontroller programming. (This means we want to start our program from the 0x0000 address.)
-	nop					; no operation, 1 cycle
+	nop					; no operation, PC <- PC+1
 	ldi r16, 0xAA
 	ldi r17, 0xBB
 	ldi r18, 0xCC
