@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Sun Aug 22 21:27:14 2021
+AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Sun Aug 22 21:37:31 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
@@ -993,7 +993,7 @@ AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atme
 000002 eb1b                      	ldi r17, 0xBB
 000003 ec2c                      	ldi r18, 0xCC
 000004 e0c2                      	ldi r28, 0x02		;
-000005 e0d1                      	ldi r29, 0x01		; Y: 0x102
+000005 e0d1                      	ldi r29, 0x01		; Y: 0x0102
                                  	;-----------------------------------------
 000006 8308                      	st		Y, r16			; r16 -> (x0102)	Y:x0102
 000007 9319                      	st		Y+, r17			; r17 -> (x0102)	Y:x0103
