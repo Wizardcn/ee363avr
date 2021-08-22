@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Fri Aug 20 12:42:37 2021
+AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atmel Studio\7.0\EE363\Code\EE363avr\EE363avr\main.asm Sun Aug 22 17:12:03 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m328Pdef.inc'
@@ -985,17 +985,31 @@ AVRASM ver. 2.2.8  C:\Users\ASUS\OneDrive - Chiang Mai University\Documents\Atme
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; instruction ldi, movw, mov
-                                 ;
-                                 
-                                 	.org 0x000
-000000 0000                      	nop
-000001 e102                      	ldi r16, 0x12		; Operand: Rd, Rr Operation: Rd <- Rr
-000002 e01c                      	ldi r17, 12
-000003 e02c                      	ldi r18, 0x0C
-000004 0108                      	movw r1:r0, r17:r16 ; Operand: Rd, Rr Operation: Rd+1:Rd <- Rr+1:Rr
-000005 2e22                      	mov r2, r18			; Operand: Rd, K Operation: Rd <- K
-000006 940c 0006                 END: jmp END
+                                 ; instruction ld, ldd, st, std
+                                 ; topic 70, 71, 72, 118, 119, 120
+                                 	.org 0x000			; ORG means origin ORG is used for specific addressing in microprocessor and microcontroller programming. (This means we want to start our program from the 0x0000 address.)
+000000 0000                      	nop					; no operation, 1 cycle
+000001 ea0a                      	ldi r16, 0xAA
+000002 eb1b                      	ldi r17, 0xBB
+000003 ec2c                      	ldi r18, 0xCC
+000004 e0c2                      	ldi r28, 0x02		;
+000005 e0d1                      	ldi r29, 0x01		; Y: 0x102
+                                 	;-----------------------------------------
+000006 8308                      	st		Y, r16			; r16 -> (x0102)	Y:x0102
+000007 9319                      	st		Y+, r17			; r17 -> (x0102)	Y:x0103
+000008 9329                      	st		Y+, r18			; r18 -> (x0103)	Y:x0104 
+000009 930a                      	st		-Y, r16			; r16 -> (x0103)	Y:x0103
+00000a 932a                      	st		-Y, r18			; r18 -> (x0102)	Y:x0102
+00000b 8008                      	ld		r0, Y			; r0 <- (x0102)		Y:x0102
+00000c 9019                      	ld		r1, Y+			; r1 <- (x0102)		Y:x0103
+00000d 9029                      	ld		r2, Y+			; r2 <- (x0103)		Y:x0104
+00000e 903a                      	ld		r3, -Y			; r3 <- (x0103)		Y:x0103
+00000f 904a                      	ld		r4, -Y			; r4 <- (x0102)		Y:x0102
+000010 8a38                      	std		Y+16, r3		; r3 -> (x0112)		Y:x0102
+000011 8059                      	ldd		r5, Y+1			; r5 <- (x0103)		Y:x0102
+                                 	;------------------------------------------
+000012 0000                      	nop
+000013 940c 0013                 END: jmp END
 
 
 RESOURCE USE INFORMATION
@@ -1013,12 +1027,12 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega328P" register use summary:
-x  :   0 y  :   0 z  :   0 r0 :   1 r1 :   1 r2 :   1 r3 :   0 r4 :   0 
-r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   2 r17:   2 r18:   2 r19:   0 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   0 r31:   0 
-Registers used: 6 out of 35 (17.1%)
+x  :   0 y  :  12 z  :   0 r0 :   1 r1 :   1 r2 :   1 r3 :   2 r4 :   1 
+r5 :   1 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   0 r16:   3 r17:   2 r18:   3 r19:   0 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   0 r31:   0 
+Registers used: 12 out of 35 (34.3%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
@@ -1031,21 +1045,21 @@ clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :   3 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   1 movw  :   1 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :   0 pop   :   0 
+ld    :   5 ldd   :   1 ldi   :   5 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   2 or    :   0 ori   :   0 out   :   0 pop   :   0 
 push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   0 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   5 std   :   1 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 5 out of 113 (4.4%)
+Instructions used: 7 out of 113 (6.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000010     16      0     16   32768   0.0%
+[.cseg] 0x000000 0x00002a     42      0     42   32768   0.1%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
