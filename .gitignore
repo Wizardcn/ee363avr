@@ -9,9 +9,10 @@
 *.bc
 
 #IDE
-*.atsin
+*.atsln
 *.asmproj
 *.componentinfo.xml
 /Debug
+/.vs/EE363avr/v14
 
 # End of https://www.toptal.com/developers/gitignore/api/assembler
