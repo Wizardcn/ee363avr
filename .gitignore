@@ -12,7 +12,7 @@
 *.atsln
 *.asmproj
 *.componentinfo.xml
-/Debug
+/EE363avr/Debug
 /.vs/EE363avr/v14
 
 # End of https://www.toptal.com/developers/gitignore/api/assembler
