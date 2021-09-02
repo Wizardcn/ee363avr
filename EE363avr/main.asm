@@ -1,20 +1,20 @@
 ;
-; instruction cp, cpc, cpi, cpse
-; topic 40, 50, 51, 52
+; instruction mul, muls, mulsu
+; topic 81, 82, 83
 		.org	0x0000
 		nop
-		ldi		r16, 2
-		ldi		r17, 2
-		ldi		r18, 5
+		ldi		r16, 0xF8
+		ldi		r17, 0x02
+		ldi		r18, 0xFE
 		;--------------------------------------------
-		cpi		r17, 8
-		brcs	N4C
-		inc		r0
-		inc		r0
-N4C:	nop
-		;--------------------------------------------
-		cpse	r16, r17
-		inc		r0
+		mul		r16, r17	;r1:r0 <- r16 * r17
+		nop
+		nop
+		muls	r17, r18	;r1:r0 <- r16 * r17
+		nop
+		nop
+		mulsu	r17, r18	;r1:r0 <- r16 * r17
+		nop
 		nop
 		;--------------------------------------------
 END:	jmp		END
