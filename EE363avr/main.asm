@@ -1,24 +1,20 @@
 ;
-; instruction sbic, sbis, sbrc, sbrs
-; topic 100, 101, 104, 105
+; instruction call, rcall, ret
+; topic 36, 91, 92
 		.org	0x0000
 		nop
-		ldi		r17, 6
-		ldi		r16, 0x01
-		out		0x04, r16
 		;--------------------------------------------
-		sbic	0x04, 0
-		inc		r17
-		nop
-		sbis	0x04, 0
-		dec		r17
-		nop
-		;--------------------------------------------
-		sbrc	r16, 4
-		inc		r17
-		nop
-		sbrs	r16, 4
-		dec		r17
-		nop
+		ldi		r16, 0x34
+		call	FUNC1
+		mov		r17, r16
+		ldi		r16, 0x86
+		rcall	FUNC1
+		mov		r18, r16
 		;--------------------------------------------
 END:	jmp		END
+
+		;============================================
+FUNC1:	swap	r16
+		com		r16
+		ret
+		;============================================
