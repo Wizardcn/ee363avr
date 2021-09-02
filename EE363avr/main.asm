@@ -1,26 +1,11 @@
 ;
-; instruction sec, seh, sei, sen, ses, set, sev, sez, 
-;             clc, clh, cli, cln, cls, clt, clv, clz
-; topic  39,  40,  41,  42,  44,  45,  46,  47, 
-;       106, 107, 108, 109, 111, 112, 113, 114
+; instruction bld, bst
+; topic  12, 35
 		.org	0x0000
 		nop
-		;--------------------------------------------
-		sec
-		seh
-		sei
-		sen
-		ses
 		set
-		sev
-		sez
-		clc
-		clh
-		cli
-		cln
-		cls
-		clt
-		clv
-		clz
+		;--------------------------------------------
+		bld		r16, 0		;T -> r16<0>
+		bst		r16, 4		;T <- r16<4>
 		;--------------------------------------------
 END:	jmp		END
