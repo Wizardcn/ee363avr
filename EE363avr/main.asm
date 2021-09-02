@@ -1,12 +1,18 @@
 ;
-; instruction adiw, sbiw
-; topic 7, 102
+; instruction asr, lsl, lsr, rol, ror, swap
+; topic 10, 77, 78, 95, 96, 125
 		.org	0x0000
 		nop
-		ldi		r26, 0xF8
-		ldi		r27, 0x01
+		ldi		r16, 0x88
+		ldi		r17, 0x83
+		ldi		r18, 0x81
+		ldi		r19, 0x48
 		;--------------------------------------------
-		adiw	r27:r26, 20		;r27:r26 <- r27:r26 + 20
-		sbiw	r27:r26, 10		;r27:r26 <- r27:r26 - 10
+		asr		r16		;arithmetic shift right
+		lsl		r17		;logical shift left
+		lsr		r17		;logical shift right
+		rol		r18		;rotate left
+		ror		r18		;rotate right
+		swap	r19		;swap
 		;--------------------------------------------
 END:	jmp		END
