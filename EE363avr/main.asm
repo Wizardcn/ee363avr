@@ -1,22 +1,15 @@
 ;
-; instruction add, adc, sub, sbc, eor, and, or
-; topic 5, 6, 8, 58, 86, 97, 123
+; instruction andi, cbr, ori, sbci, sbr, subi
+; topic 9, 38, 87, 98, 103, 124
 		.org	0x0000
 		nop
-		ldi		r16, 0x9B
-		ldi		r17, 0x16
-		ldi		r18, 0xC7
-		ldi		r19, 0x42
+		ldi		r16, 0x23
 		;--------------------------------------------
-		add		r16, r18	;r16 <- r16 + r18
-		adc		r17, r19	;r17 <- r17 + r19 + C
-		;--------------------------------------------
-		sub		r16, r18	;r16 <- r16 - r18
-		sbc		r17, r19	;r17 <- r17 - r19 - C
-		;--------------------------------------------
-		eor		r18, r19	;r18 <- r18 xor r19
-		or		r16, r17	;r16 <- r16 or  r17
-		and		r18, r17	;r18 <- r18 and r17
+		andi	r16, 0x0F	;r16 <- r16 # 0x0F
+		cbr		r16, 0x01	;r16 <- r16 # 0x01
+		ori		r16, 0x21	;r16 <- r16 # 0x21
+		sbci	r16, 0x10	;r16 <- r16 # 0x10
+		sbr		r16, 0x21	;r16 <- r16 # 0x21
+		subi	r16, 0x10	;r16 <- r16 # 0x10
 		;--------------------------------------------
 END:	jmp		END
-
