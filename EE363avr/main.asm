@@ -1,14 +1,10 @@
 ;
-; instruction cbi, sbi
-; topic 37, 99
+; instruction bclr, bset
+; topic 11, 34
 		.org	0x0000
 		nop
-		ldi		r16, 0x01
-		out		0x04, r16
 		;--------------------------------------------
-		sbi		0x05, 0		;set bit
-		cbi		0x05, 0		;clear bit
-		sbi		0x05, 0		;set bit
-		cbi		0x05, 0		;clear bit
+		bset	6
+		bclr	6
 		;--------------------------------------------
 END:	jmp		END
