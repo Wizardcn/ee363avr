@@ -1,18 +1,22 @@
 ;
-; instruction push, pop
-; topic 89, 90
-	.org 0x0000
-	nop
-	ldi		r16, 0xAA
-	ldi		r17, 0xBB
-	ldi		r18, 0xCC
-	;------------------------------------------------------------
-	push	r16			; r16 -> (x08FF) SP:x08FE
-	push	r17			; r17 -> (x08FE) SP:x08FD
-	push	r18			; r18 -> (x08FD) SP:x08FC
-	pop				r4				; r4 <- (x08FD) SP:x08FD
-	pop				r5				; r5 <- (x08FE) SP:x08FE
-	pop				r6				; r6 <- (x08FF) SP:x08FF
-	;------------------------------------------------------------
-END: jmp			END
+; instruction add, adc, sub, sbc, eor, and, or
+; topic 5, 6, 8, 58, 86, 97, 123
+		.org	0x0000
+		nop
+		ldi		r16, 0x9B
+		ldi		r17, 0x16
+		ldi		r18, 0xC7
+		ldi		r19, 0x42
+		;--------------------------------------------
+		add		r16, r18	;r16 <- r16 + r18
+		adc		r17, r19	;r17 <- r17 + r19 + C
+		;--------------------------------------------
+		sub		r16, r18	;r16 <- r16 - r18
+		sbc		r17, r19	;r18 <- r18 - r19 - C
+		;--------------------------------------------
+		eor		r18, r19	;r18 <- r18 xor r19
+		or		r16, r17	;r16 <- r16 or  r17
+		and		r18, r17	;r18 <- r18 and r17
+		;--------------------------------------------
+END:	jmp		END
 
