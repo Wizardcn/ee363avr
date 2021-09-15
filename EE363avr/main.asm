@@ -14,7 +14,7 @@ END:	jmp			END
 ;output		r0
 ;resource	r17, r18
 BCD2BIN:
-			mov				r17, 16
+			mov				r17, r16
 			andi	r16, 0x0F
 			swap	r17
 			andi	r17, 0x0F
