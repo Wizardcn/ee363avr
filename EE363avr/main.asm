@@ -1,25 +1,32 @@
+; 
+; Basic assembly program
 ;
-;	Basic assembly program
-;
-			.org	0x0000
-			jmp				START
-		;------------------------------------------------
-START:	ldi			r16, 0x24
-			call	BCD2BIN
-		;------------------------------------------------
-END:	jmp			END
+;		reset vector
+		.org	0x0000
+		jmp		START
+;----------------------------------
+;		main loop
+START:	;   A
+		ldi		r16, 'A'
+		call	HEXASCII2BIN
+		sts		0x0100, r16
+		;	9
+		ldi		r16, '9'
+		call	HEXASCII2BIN
+		sts		0x0101, r16
+;----------------------------------
+END:	jmp		END
 
-;====================================================
-;input		r16
-;output		r0
-;resource	r17, r18
-BCD2BIN:
-			mov				r17, r16
-			andi	r16, 0x0F
-			swap	r17
-			andi	r17, 0x0F
-			ldi				r18, 10
-			mul				r17, r18
-			add				r0, r16
-			ret
-;====================================================
+;================== Routine ======================
+; input		r16
+; output	r16
+HEXASCII2BIN:	cpi		r16, 'A'
+				brbc	0, SUBTRACT
+				andi	r16, 0x0F
+				ret
+
+;---------------- subtraction routine ------------
+SUBTRACT:		subi	r16, 55
+				ret
+;=================================================
+				
