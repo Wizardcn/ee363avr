@@ -1,18 +1,24 @@
-; 
-; Basic assembly program
 ;
-;		reset vector
+; Basic assembly program 
+; 
 		.org	0x0000
-		jmp		START
-;----------------------------------
-;		main loop
-START:	call	delay
+		JMP		START
+		;--------------------------------------------
+START:	ldi		r16, 1
+		call	delay
+		ldi		r16, 2
+		call	delay
+		ldi		r16, 3
+		call	delay
 		nop
-;----------------------------------
+		;--------------------------------------------
 END:	jmp		END
 
-;================== Routine 1 ===================
-delay:	ldi		r17, 100
+;====================================================
+;input		r16
+;resource	
+delay:
+		ldi		r17, 100
 dLoop:	nop
 		nop
 		nop
@@ -22,6 +28,7 @@ dLoop:	nop
 		nop
 		dec		r17
 		brbc	1, dLoop
+		dec		r16
+		brbc	1, delay
 		ret
-;=================================================
-				
+;====================================================
